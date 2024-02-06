@@ -1,0 +1,50 @@
+@font-face {
+  font-family: "Quicksand";
+  src: url("./Quicksand-Light.woff") format("woff"),
+    url("./Quicksand-Light.woff2") format("woff2");
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: white;
+  font-family: "Quicksand";
+  list-style-type: none;
+  text-decoration: none;
+}
+body {
+  background: radial-gradient(
+    circle,
+    rgba(100, 0, 123, 1) 0%,
+    rgba(62, 20, 86, 1) 100%
+  );
+  overflow: hidden;
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+header {
+  display: flex;
+  padding: 40px;
+  align-items: center;
+  .logo {
+    svg {
+      width: 80px;
+      overflow: visible;
+      stroke: #fff;
+      stroke-width: 4;
+      stroke-linejoin: round;
+      stroke-linecap: round;
+    }
+  }
+  .title {
+    font-size: 0.6rem;
+    margin-left: 20px;
+    flex: 1;
+    h1 {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      letter-spacing: 2px;
+      padding-bottom: 10px;
+    }
+  }
+}
