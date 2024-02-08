@@ -1,0 +1,12 @@
+.order {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  letter-spacing: 2px;
+  min-width: 300px;
+  margin: 100px auto 40px;
+  p {
+    margin: 20px auto;
+  }
+}

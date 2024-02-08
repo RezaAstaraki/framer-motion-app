@@ -1,0 +1,38 @@
+.topping {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  letter-spacing: 2px;
+  min-width: 300px;
+  margin: 100px auto 40px;
+  h3 {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+  }
+  li {
+    padding: 10px;
+    cursor: pointer;
+
+    .active {
+      font-weight: bold;
+    }
+    .active::before {
+      content: ">";
+      position: relative;
+      top: -2px;
+      margin-right: 6px;
+      transform: scale(0.8, 1);
+      display: inline-block;
+    }
+  }
+  .order {
+    margin-top: 50px;
+    text-align: center;
+    border: 1px solid white;
+    padding: 10px;
+    width: 100px;
+    border-radius: 20px;
+  }
+}
