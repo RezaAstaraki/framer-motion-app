@@ -1,20 +1,19 @@
 import "./App.scss";
 import { useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 
 import Header from "./components/header/Header";
 import Home from "./components/home/Home";
 import Base from "./components/Base/Base";
 import Topping from "./components/topping/Topping";
 import Order from "./components/order/Order";
+import Modal from "./modal/Modal";
 
 function App() {
+  const location = useLocation();
   const [pizza, setPizza] = useState({ base: "", topping: [] });
-
-  useEffect(() => {
-    console.log("******state*******");
-    console.log("pizza", pizza);
-  }, [pizza]);
+  const [showModal, setShowModal] = useState(false);
 
   const handleBass = (target) => {
     setPizza((prevPizza) => {
@@ -22,6 +21,7 @@ function App() {
       return newPizza;
     });
   };
+
   const handleTopping = (target) => {
     setPizza((prevPizza) => {
       let newTopping;
@@ -39,20 +39,30 @@ function App() {
   return (
     <>
       <Header />
-      <Routes>
-        <Route element={<Home />} path="/" />
-        <Route element={<Base baseHandler={handleBass} />} path="base" />
-        <Route
-          element={
-            <Topping
-              toppingHandler={handleTopping}
-              pizzaTopping={pizza.topping}
-            />
-          }
-          path="topping"
-        />
-        <Route element={<Order pizza={pizza} />} path="order" />
-      </Routes>
+      <Modal
+        setShowModal={setShowModal}
+        showModal={showModal}
+        setPizza={setPizza}
+      />
+      <AnimatePresence mode="wait" onExitComplete={() => setShowModal(false)}>
+        <Routes location={location} key={location.key}>
+          <Route element={<Home />} path="/" />
+          <Route element={<Base baseHandler={handleBass} />} path="base" />
+          <Route
+            element={
+              <Topping
+                toppingHandler={handleTopping}
+                pizzaTopping={pizza.topping}
+              />
+            }
+            path="topping"
+          />
+          <Route
+            element={<Order pizza={pizza} setShowModal={setShowModal} />}
+            path="order"
+          />
+        </Routes>
+      </AnimatePresence>
     </>
   );
 }

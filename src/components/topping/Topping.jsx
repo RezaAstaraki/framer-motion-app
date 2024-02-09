@@ -1,5 +1,10 @@
 import "./topping.scss";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import {
+  buttonVariants,
+  containerVariants,
+} from "../../../public/publicVariants";
 
 export default function Topping({ toppingHandler, pizzaTopping }) {
   const items = [
@@ -11,8 +16,14 @@ export default function Topping({ toppingHandler, pizzaTopping }) {
     "tomatoes",
   ];
   return (
-    <div className="topping">
-      <h3>Step 1: Choose Topping</h3>
+    <motion.div
+      className="topping"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+    >
+      <h3>Step 2: Choose Topping</h3>
       <ul>
         {items.map((item, index) => (
           <li key={index}>
@@ -25,9 +36,15 @@ export default function Topping({ toppingHandler, pizzaTopping }) {
           </li>
         ))}
       </ul>
-      <div className="order">
-        <Link to={"/order"}>Order</Link>
-      </div>
-    </div>
+      <Link to={"/order"}>
+        <motion.div
+          className="order"
+          variants={buttonVariants}
+          whileHover="hover"
+        >
+          Order
+        </motion.div>
+      </Link>
+    </motion.div>
   );
 }

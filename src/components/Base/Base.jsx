@@ -2,6 +2,12 @@ import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "./base.scss";
 
+import {
+  buttonVariants,
+  containerVariants,
+} from "../../../public/publicVariants";
+import { motion } from "framer-motion";
+
 export default function Base({ baseHandler }) {
   const items = ["Classic", "Thin & Crispy", "Thick Crust"];
 
@@ -14,7 +20,13 @@ export default function Base({ baseHandler }) {
 
   const element = useRef(null);
   return (
-    <div className="base">
+    <motion.div
+      className="base"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+    >
       <h3>Step 1: Choose Your Base</h3>
       <ul>
         {items.map((item, index) => (
@@ -28,9 +40,9 @@ export default function Base({ baseHandler }) {
           </li>
         ))}
       </ul>
-      <div className="next">
+      <motion.div className="next" variants={buttonVariants} whileHover="hover">
         <Link to={"/topping"}>Next</Link>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }

@@ -17,6 +17,7 @@
 
     .active {
       font-weight: bold;
+      color: orange;
     }
     .active::before {
       content: ">";
@@ -28,6 +29,7 @@
     }
   }
   .next {
+    cursor: pointer;
     margin-top: 50px;
     text-align: center;
     border: 1px solid white;
